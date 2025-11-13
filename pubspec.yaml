@@ -1,0 +1,43 @@
+name: buamal
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.2.1
+  shared_preferences: ^2.2.3
+  cupertino_icons: ^1.0.6
+  image_picker: ^1.1.2
+  intl: ^0.19.0  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/Hlink.png
+    - assets/images/Login.jpeg
+    - assets/images/profile.jpg
+    - assets/images/a.jpeg
+    - assets/images/SelectRole.jpeg
+    - assets/images/splash.jpeg
+    - assets/images/SplashBG.jpg
+    - assets/images/p.jpg
+    - assets/fonts/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
