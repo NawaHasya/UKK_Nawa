@@ -45,45 +45,51 @@ class SeekerJobList extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Daftar job list
+            // ✅ Daftar job list — sudah ditambahkan 'applicants'
             Expanded(
               child: ListView(
-                children: const [
+                children: [
                   JobCard(
                     title: "Frontend Developer",
                     company: "PT Telkom Indonesia",
                     location: "Bandung, Jawa Barat",
                     salary: "Rp 8.000.000 / bulan",
+                    applicants: 42,
                   ),
                   JobCard(
                     title: "UI/UX Designer",
                     company: "Gojek Indonesia",
                     location: "Jakarta Selatan",
                     salary: "Rp 10.000.000 / bulan",
+                    applicants: 55,
                   ),
                   JobCard(
                     title: "Mobile Developer (Flutter)",
                     company: "Traveloka",
                     location: "Yogyakarta",
                     salary: "Rp 9.500.000 / bulan",
+                    applicants: 38,
                   ),
                   JobCard(
                     title: "Backend Engineer",
                     company: "Tokopedia",
                     location: "Jakarta Barat",
                     salary: "Rp 11.000.000 / bulan",
+                    applicants: 60,
                   ),
                   JobCard(
                     title: "Project Manager",
                     company: "Bukalapak",
                     location: "Depok, Jawa Barat",
                     salary: "Rp 12.500.000 / bulan",
+                    applicants: 25,
                   ),
                   JobCard(
                     title: "Data Analyst",
                     company: "Shopee Indonesia",
                     location: "Tangerang Selatan",
                     salary: "Rp 10.200.000 / bulan",
+                    applicants: 48,
                   ),
                 ],
               ),
