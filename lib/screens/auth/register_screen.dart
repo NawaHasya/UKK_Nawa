@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../services/auth_service.dart';
 import '../job_seeker/seeker_dashboard.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -217,7 +216,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 addressController, "Address", Icons.location_on_outlined),
             const SizedBox(height: 35),
 
-            // 🟨 Tombol Sign Up
+            // 🟨 Tombol Sign Up (tanpa API)
             SizedBox(
               width: double.infinity,
               height: 55,
@@ -232,40 +231,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ? null
                     : () async {
                         setState(() => isLoading = true);
-                        try {
-                          final res = await AuthService.registerUser(
-                            name: nameController.text,
-                            email: emailController.text,
-                            password: passwordController.text,
-                            phone: phoneController.text,
-                            dateOfBirth: selectedDate != null
-                                ? DateFormat('yyyy-MM-dd').format(selectedDate!)
-                                : "2000-01-01", // default tanggal kalau belum dipilih
-                            address: addressController.text,
-                            gender: selectedGender,
-                          );
+                        await Future.delayed(const Duration(seconds: 1));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("✅ Register Berhasil (Simulasi)"),
+                          ),
+                        );
+                        setState(() => isLoading = false);
 
-                          if (res["success"] == true) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("✅ ${res["message"]}")),
-                            );
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const SeekerDashboard()),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text("❌ ${res["message"]}")),
-                            );
-                          }
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("❌ Gagal Register: $e")),
-                          );
-                        } finally {
-                          setState(() => isLoading = false);
-                        }
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const SeekerDashboard()),
+                        );
                       },
                 child: isLoading
                     ? const CircularProgressIndicator(color: Colors.black)
