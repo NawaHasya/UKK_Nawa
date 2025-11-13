@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../services/auth_service.dart';
 import '../job_seeker/seeker_dashboard.dart';
 import 'register_screen.dart';
 
@@ -134,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  /// 🔹 Fungsi login
+  /// 🔹 Fungsi login (simulasi lokal)
   Future<void> _handleLogin() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
@@ -147,32 +146,20 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     setState(() => isLoading = true);
+    await Future.delayed(const Duration(seconds: 1));
 
-    try {
-      final result = await AuthService.loginUser(email: email, password: password);
+    // Simulasi login berhasil
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("✅ Login berhasil (Simulasi)")),
+    );
 
-      if (result["success"] == true) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("✅ Login berhasil")),
-        );
+    setState(() => isLoading = false);
 
-        // Arahkan ke dashboard
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const SeekerDashboard()),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("❌ Login gagal: ${result['message']}")),
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Terjadi kesalahan: $e")),
-      );
-    } finally {
-      setState(() => isLoading = false);
-    }
+    // Arahkan ke dashboard
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const SeekerDashboard()),
+    );
   }
 
   Widget _buildRoundedTextField(
